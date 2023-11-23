@@ -1,0 +1,51 @@
+\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+
+% Commands
+
+% Define new commands to store the trim values
+\newcommand{\trimLR}{2cm}
+\newcommand{\trimtop}{3.5cm}
+\newcommand{\trimbottom}{4cm}
+
+% This command creates a figure environment with a specific image:
+% \myfigure{page}{trim_width}{trim_height}{filename}
+%
+% Arguments:
+%  page: The page number of the image in the file.
+%  trim_width: The width of the trim box.
+%  trim_height: The height of the trim box.
+%  filename: The name of the file that contains the image.
+%
+% Usage:
+%  \myfigure{1}{1cm}{1cm}{image.png}
+% This will create a figure with the image from page 1 of image.png, trimmed to 1cm by 1cm.
+\newcommand{\myfigure}[4]{
+  \begin{figure}[h]
+    \centering
+    \includegraphics[page=#1, trim = #2 #3 #2 \trimtop, clip, width=\textwidth]{#4}
+  \end{figure}
+}
+
+\setlength{\parskip}{8pt}
+% Document
+\title{Business Information Systems - Part 2}
+\author{Gabriele Lazzarelli}
+
+\begin{document}
+
+% Debugging purposes
+\pagecolor{Goldenrod}
+
+\maketitle
+\tableofcontents
+
+\include{sections/introduction}
+\include{sections/workforce-management}
+
+
+\end{document}

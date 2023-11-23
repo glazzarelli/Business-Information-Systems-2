@@ -1,0 +1,7 @@
+# Ignore everything in the output directory
+/output/*
+
+# Except for main.pdf
+!/output/main.pdf
+
+*.log
