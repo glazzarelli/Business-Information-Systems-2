@@ -2,6 +2,7 @@
 /output/*
 
 # Except for main.pdf
-!/output/main.pdf
+# !/output/main.pdf
 
 *.log
+.DS_Store
