@@ -1,11 +1,12 @@
 \documentclass{article}
 
-% Packages
+%% Packages %%
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage[dvipsnames]{xcolor}
 
-% Commands
+%% Commands %%
 
 % Define new commands to store the trim values
 \newcommand{\trimLR}{2cm}
@@ -31,8 +32,11 @@
   \end{figure}
 }
 
+% Sets the length of the vertical space between paragraphs to 8pt.
 \setlength{\parskip}{8pt}
-% Document
+
+%% Document %%
+
 \title{Business Information Systems - Part 2}
 \author{Gabriele Lazzarelli}
 
@@ -44,8 +48,9 @@
 \maketitle
 \tableofcontents
 
-\include{sections/introduction}
-\include{sections/workforce-management}
+% \include{sections/introduction}
+% \include{sections/workforce-management}
+\include{sections/kpmg-erp-systems}
 
 
 \end{document}
