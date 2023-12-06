@@ -2,7 +2,7 @@
 
 This repository contains the LaTeX source code for my notes of Business Information Systems 2 held at Politecnico di Milano.
 
-**Disclaimer:** These notes are generated using GPT from the transcripts of the lesson. While every effort has been made to ensure accuracy, there may be errors and inaccuracies. 
+**Disclaimer:** The text from the notes are generated using GPT and Whisper-v2 from the transcripts of the lesson. While every effort has been made to ensure accuracy, there may be errors and inaccuracies. 
 
 ## Structure
 
@@ -20,10 +20,7 @@ To compile the LaTeX document and produce a PDF I used the LaTeX Workshop extens
 4. The compiled PDF will be displayed in a new tab in Visual Studio Code.
 
 Please ensure that you have Latex distribution installed and properly configured in your system.
-As a macOS user I use the MiKTeX distribution.
+I use the MiKTeX distribution in both MacOS and Windows.
 
 ## Contributing
 If you would like to contribute to this project, please fork the repository, make your changes, and open a pull request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
