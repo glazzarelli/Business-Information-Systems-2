@@ -397,16 +397,7 @@ most frequently implemented. Many companies have already conducted pilot
 projects in these areas to assess the potential benefits and understand
 the associated challenges of applying machine learning.
 
-
-\subsection{Automating Decision Making with Machine
-    Learning}\label{automating-decision-making-with-machine-learning}
-
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[page=20, trim = 1.5cm 2.5cm 2.5cm 2.9cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
-\end{figure}
-
+\subsection{KPIs and Decision Making}
 
 In general, machine learning is used to embed decision-making
 capabilities into various applications. For instance, in predictive
@@ -441,3 +432,195 @@ prefer to have human decision-makers involved and compare the decisions
 made by machines with those made by humans. This approach allows for
 human oversight and ensures that decisions are thoroughly evaluated
 before implementation.
+
+\subsubsection{Importance of KPIs}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=20, trim = 3cm 2.5cm 4cm 2.9cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+When it comes to the importance of KPIs, it's crucial to set the right
+ones and consider the decisions you want your machine to make. It may be
+necessary to train multiple algorithms based on the specific KPI you
+want to optimize and use the appropriate algorithm at the appropriate
+time. This is a common approach.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=21, trim = 0cm 3cm 2.5cm 0.7cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+AI should always be aligned with KPIs because it supports
+decision-making. Decisions should be guided by the right KPIs. It's
+essential to continuously learn, adapt to the market, and meet the new
+demands that arise to remain competitive. Therefore, it's vital to train
+your machine learning models in a way that enables this ongoing learning
+process.
+
+\subsubsection{Evaluating and Optimizing KPIs}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=22, trim = 0cm 1.5cm 1.5cm 0.7cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+Developing multiple machine learning algorithms and integrating them
+into an artificial intelligence application is crucial for providing
+effective decision support. This application should allow users to make
+decisions manually if desired, and have the flexibility to start and
+stop different algorithms based on the context. This approach transforms
+the application into an executive tool rather than just an algorithm. It
+is a promising direction because it allows for specific algorithms to
+automate decision-making and optimize it, while in other cases, such as
+revenue optimization, the focus is on developing applications that
+support decision-making rather than fully automating it.
+
+To ensure the effectiveness of these algorithms, quantitative evidence
+is necessary. Evaluating KPIs (Key Performance Indicators) is essential
+to optimize algorithms and ensure they are achieving the desired
+outcomes. However, it is not enough to train the algorithm and conclude
+that it is accurate. KPIs must be continuously measured to assess the
+algorithm's performance. This ongoing measurement is crucial, and the
+results should be fed into traditional executive applications for
+continuous monitoring and control.
+
+\subsubsection{Quantitative Evidence and Business KPIs}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=23, trim = 1cm 1.5cm 0 1cm 0cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+These examples illustrate different business Key Performance Indicators
+(KPIs). For instance, in the retail industry, it is important to assess
+the precision of revenue predictions. The following data is from a real
+supermarket and demonstrates how the error rate changes depending on the
+specificity of the prediction. When making more general revenue
+predictions for the entire company, the error rate is very low, around
+4\%. However, as the prediction becomes more specific, such as for a
+particular shop or a specific category of products like coffee, the
+error rate tends to increase. For instance, predicting the revenue of a
+particular brand of coffee in a specific shop may result in an error
+rate as high as 30\%.
+
+\subsection{Machine Learning Algorithms}
+
+\subsubsection{Designing and Testing Algorithms}
+
+When designing a machine learning application, it is important to
+consider that different algorithms have different performance levels.
+Therefore, testing multiple algorithms and selecting the most suitable
+one for your specific problem and data is crucial. Always compare the
+models and choose the one that performs the best. It's important to note
+that there is no universally best machine learning model. The best model
+depends on the context and the data at hand. To assess the error, you
+will need to try different models and evaluate their performance.
+
+\subsubsection{Context-Dependent Error Assessment}
+
+Determining the acceptable level of error is a context-dependent
+question without a definitive answer. In certain applications, as long
+as the overall sentiment or outcome is correctly polarized, even if
+there is a high error rate, the application can still be successful. For
+example, in sentiment analysis, if the goal is to understand the general
+sentiment of customers towards products and brands, a high error rate
+may be acceptable as long as the sentiment is correctly polarized as
+positive. It is not necessary to achieve absolute precision, as that
+would make the application unreliable. However, it is important to avoid
+a level of error that is equivalent to flipping a coin. An accuracy rate
+of 30\% or 70\% may be sufficient in some cases.
+
+\subsubsection{Benefits and Applications}
+
+In revenue prediction, companies aim for a low error rate, typically
+below 5\%. Some companies even require an error rate below 3\%. However,
+achieving such precision may not be possible in all applications. For
+example, when using revenue prediction in the supply chain to determine
+how much to order from a supplier, precision becomes a challenge.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=24, trim = 0cm 2cm 1.5cm 3.5cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+
+Our research group has extensive experience in applying machine learning
+in various areas, as shown in the chart. We have developed
+applications for different companies. Despite the proven benefits of
+machine learning in these contexts, managers often remain skeptical.
+
+\subsection{Managerial Skepticism and Training}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=25, trim = 0cm 3.5cm 1.5cm 1.2cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+\subsubsection{Perception of Complexity}
+
+The skepticism towards AI and machine learning among managers often
+stems from the perception of complexity. When managers hear terms like
+``linear regression,'' they may have a basic understanding of the
+concept and feel comfortable within their knowledge zone. However, when
+it comes to AI, terms like ``supervised,'' ``unsupervised,'' ``ground
+truth,'' ``neural networks,'' and ``deep learning'' can create confusion
+and a sense of being lost. Managers see AI as a black box, something
+they have no control over and don't fully understand. They worry that
+relying on AI for decision-making will result in a loss of control and
+decision-making capabilities.
+
+\subsubsection{Reducing Skepticism with Training}
+
+In order to address this issue, it is crucial to provide training to the
+managers. By offering training sessions that cover the basics of AI and
+machine learning, as well as providing an objective understanding of
+what can be expected and the significance of business APIs, skepticism
+can be reduced. It is important to emphasize the development of a
+comprehensive AI application that allows managers to actively engage
+with the system and not solely rely on the algorithm. Without proper
+training, managers may continue to harbor skepticism.
+
+\subsubsection{Application-Specific Acceptance}
+
+This means that certain applications do not pose a problem. For example,
+in the case of predictive maintenance, if an engineer assures them that
+an AI algorithm can predict better than they can, they are likely to
+trust and implement it. However, in other contexts such as revenue
+management, where setting the price of a product or service is crucial
+to the company's effectiveness and competitiveness, even a small amount
+of skepticism can lead them to choose a non-fully automated solution.
+
+\subsection{Challenges in AI and ML Adoption}
+
+\subsubsection{Lack of Off-the-Shelf Solutions}
+
+When it comes to innovation and technology, there are always
+enthusiastic managers who fully embrace automation and technology,
+regardless of the challenges. However, one of the main obstacles to the
+widespread adoption of machine learning and artificial intelligence is
+the lack of off-the-shelf solutions. This means that companies need to
+invest time and effort into working with data and designing customized
+solutions that fit their specific needs.
+
+\subsubsection{Managerial Decision Automation}
+
+Implementing technology, especially specialized and expensive
+technology, can pose challenges for managers. One of these challenges is
+the decision to automate their own decision-making processes. This
+decision can create a conflict of interest for managers. By opting for
+machine learning and automation, managers may fear that they will lose
+their job or diminish their importance within the company. This fear
+stems from the potential reduction in their workload and the number of
+people they collaborate with. As a result, managers may be hesitant to
+embrace automation due to concerns about the impact on their role and
+status within the organization.
+
+\subsubsection{Association with Big Data}
+
+Lastly, it is important to note that AI and machine learning are closely
+linked to the concept of big data, which further complicates their
+implementation. This is the second part of our discussion, and
+additional recordings will be available soon. We will begin by
+explaining the significance of big data and why it is relevant at this
+time.
