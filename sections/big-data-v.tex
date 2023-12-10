@@ -1,0 +1,175 @@
+\section{Big Data Analytics - V Lecture}
+
+\subsection{Solution and Case Studies Part Two}
+
+\subsubsection{Big Data Project Management}
+
+We previously covered the
+importance of defining and selecting use cases, determining the project
+theme, and planning the project. Now, let's move on to step four:
+defining the technical requirements.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=88, trim = 0cm 3cm 1.5cm 4.5cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+When defining the technical requirements, it's crucial to prioritize the
+business needs before considering the technology. It's recommended to
+have a clear understanding of what you require during the pilot stage.
+This means avoiding the purchase of unnecessary infrastructure and
+technologies at the initial stage. Typically, a pilot requires a smaller
+infrastructure and a limited set of technologies.
+
+Once the pilot stage is successfully completed, and you are ready to
+scale up and deploy the project, that's when you should invest in a
+full-fledged infrastructure and architecture that meets your needs. By
+following this approach, you can ensure that your big data project
+progresses efficiently and effectively.
+
+\subsubsection{Case Study of Targeting}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=89, trim = 0cm 3cm 1.5cm 4.3cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+In this case study, we will explore the concept of targeting, which
+encompasses more than just the recommendation engine used in retail.
+Targeting involves automating various functionalities using big data and
+analytics. While the online recommendation engine is a part of
+targeting, there are other functionalities as well.
+
+One example is the assortment optimization engine, which allows
+customers to have a personalized shelf where they can easily find
+products that are preferred by certain customers or even a specific
+customer. Another functionality is the personalized online search
+engine, which prioritizes products that are similar to the ones the
+customer likes or prefers. Additionally, there is the personalized
+shopping list feature, which automatically creates a shopping list based
+on the customer's preferences.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=95, trim = 1.5cm 3.5cm 1.5cm 4cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+The coupon engine with personalized pricing is another aspect of
+targeting. It provides customers with coupons based on their preferences
+for their favorite products or for products that represent an upselling
+opportunity. For instance, it may offer a coupon for a better quality
+wine to encourage customers to switch to a higher quality product.
+
+The personalized communication engine ensures that individual customer
+preferences are taken into consideration when sending out mailings,
+flyers, or pop-ups. Lastly, the instore proximity recommendation engine
+provides customers with instant discounts or suggestions based on the
+products they have already placed in their cart while shopping in a
+supermarket.
+
+As you can see, targeting is not limited to recommendations alone. It
+encompasses a wide range of applications that utilize customer knowledge
+and the same engine to enhance the overall customer experience.
+
+\subsubsection{Personalization in Retail}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=90, trim = 0cm 3cm 1.5cm 4.5cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+When considering personalized recommendations in retail, it's important
+to recognize that not all companies can follow the same approach as
+Amazon. While Amazon recommends widely purchased products, such as the
+Amazon Choice, for items in your cart, this strategy may not be suitable
+for all businesses. For example, if you are a supermarket competing on
+quality, recommending the most frequently purchased product may not
+align with your brand positioning.
+
+By solely recommending mass-market products, even to customers who are
+willing to purchase higher quality items, you risk negatively impacting
+your business's bottom line. Non-personalized recommendations can lead
+to reduced margins and revenue. Therefore, it's crucial to tailor
+recommendations based on the specific needs and competitive position of
+your company.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=91, trim = 0cm 0.7cm 1.5cm 1cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+For instance, let's consider the example of upsell. If a customer
+typically purchases the lowest-priced lemons, a personalized
+recommendation engine should not suggest higher-priced organic lemons.
+The price difference between the customer's usual choice and the organic
+lemons is too significant. However, recommending Sorrento lemons, which
+have a higher margin, could potentially generate greater profits, even
+with a small discount. By offering a better product to the customer and
+hoping they make the switch, you can increase your revenue.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=92, trim = 0cm 1.5cm 1.5cm 1cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+Similarly, if a customer buys mass-market pasta, they would require
+mass-market sauce. However, if they purchase premium or organic pasta,
+it would be more appropriate to recommend a sauce with similar
+characteristics. This level of attention to detail in personalized
+recommendations can drive higher revenues and profits for your business.
+By analyzing customer data and making these nuanced suggestions,
+companies can maximize their earning potential.
+
+\subsubsection{Architecture Considerations}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=97, trim = 0cm 2cm 0cm 4.5cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=98, trim = 0cm 9cm 1.5cm 4.8cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+The solution provides measurable results, leading to increased sales and
+customer satisfaction---a win-win situation for companies. Architecture
+considerations are also important, especially when dealing with highly
+personalized systems that require intensive computation. In such cases,
+companies often generate large recommendation tables periodically, using
+batch processing on commodity servers. These tables, which can be as
+large as 300 gigabytes, are then accessed in real-time using
+high-performance NoSQL key-value databases. This architecture allows for
+efficient and effective processing of recommendations.
+
+\subsubsection{Conclusions and Change Management}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=99, trim = 0cm 7cm 1.5cm 4.5cm, clip, width=\textwidth]{images/06 - BIG_DATA.pdf}
+\end{figure}
+
+In conclusion, the field of big data is continuously improving, with the
+size of data increasing. To effectively manage this data, scalable and
+cost-effective solutions are necessary. It is important to consider the
+business benefits and find a case study where these benefits are
+evident. Experimentation is crucial, as companies need to adopt an
+innovative approach and be open to change. This requires a shift in
+company culture, especially if the organization is accustomed to
+standardization and control. Change management is essential and goes
+beyond technology implementation. Specialized consultants can assist in
+managing organizational change and facilitating the transition. However,
+finding reliable change management consulting companies can be
+challenging. Smaller consulting firms often offer valuable expertise in
+this area. This concludes the discussion on big data and analytics.
+
+\subsection{Closing Remarks}
+
+As we reach the end of this course, I wanted to take a moment to provide
+some closing remarks. This final class has been pre-recorded to allow
+you additional time to study and adequately prepare for the upcoming
+midterm. I hope that you have found this course informative and
+engaging, and that it has provided you with valuable knowledge and
+skills. I encourage you to continue your studies and apply what you have
+learned in your future endeavors. Thank you for your participation, and
+I wish you a pleasant evening.
