@@ -416,6 +416,11 @@ precise responsibilities to each component.
 
 \subsubsection{Monolithic vs Microservices Architecture}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=5, trim = 2.5cm 3cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
 The Model-View-Controller (MVC) design pattern was initially developed
 for desktop applications but later adapted for web applications. In this
 pattern, when a request is made in a web application, it goes through a
@@ -438,6 +443,11 @@ using a simple approach or only relying on MVC in PHP, you may encounter
 limitations and code duplication. In such cases, you may need a common
 component that can be used across different parts of the application.
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=7, trim = 2.5cm 7.5cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
 In a monolithic architecture, the layers of presentation, persistence,
 and domain are all part of the same application. If a bug is introduced
 in one part of the application, the entire application fails to compile,
@@ -447,6 +457,11 @@ libraries, the monolithic architecture has inherent limitations. These
 limitations will be discussed later. Essentially, a monolith refers to a
 single executable.
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=9, trim = 2.5cm 5cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
 The monolithic architecture is a common approach in software
 development, where all components of an application are bundled together
 into a single executable. This includes the architectural layers such as
@@ -454,12 +469,22 @@ the model, view, controller, presentation layer, and data layer. While
 this approach allows for easy development and higher initial
 productivity, it also comes with its drawbacks.
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=17, trim = 2.5cm 4cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
 One of the main challenges with a monolithic architecture is
 scalability. When scaling a monolith, you need to replicate the entire
 application, even if only a small part of it requires more resources.
 This can lead to inefficient resource usage. Additionally, if a new
 version of a component is not compatible with other parts of the
 monolith, upgrading becomes difficult.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=16, trim = 2.5cm 3.7cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
 
 Another weakness of the monolithic architecture is the difficulty in
 maintenance and evolution. With a large codebase and tightly coupled
@@ -482,6 +507,11 @@ enables easier maintenance and evolution, as changes can be made to
 individual services without affecting the entire application.
 Additionally, the team scalability is improved, as smaller teams can
 work on individual services independently.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[page=11, trim = 2.5cm 4.5cm 1.5cm 4cm, clip, width=\textwidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
 
 While the monolithic architecture has its advantages, such as higher
 initial productivity and ease of development, it is important to
