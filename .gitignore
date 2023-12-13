@@ -2,8 +2,10 @@
 /output/*
 
 # Except for main.pdf
-# !/output/main.pdf
+!/output/main.pdf
 
+# Other thing to ignore
 *.log
 .DS_Store
 images/Introduction to remote sensing.docx
+images/logo_polimi_scritta-eps-converted-to.pdf
