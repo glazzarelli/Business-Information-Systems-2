@@ -1,62 +1,83 @@
-\documentclass{article}
+\documentclass[twocolumn, twoside]{article}
 
 %% Packages %%
 \usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={17cm, 25cm}]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[dvipsnames]{xcolor}
+
+
+% Custom header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\leftmark}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove the footer rule
+
 
 %% Commands %%
 
 % Define new commands to store the trim values
 \newcommand{\trimLR}{2cm}
 \newcommand{\trimtop}{3.5cm}
-\newcommand{\trimbottom}{4cm}
+\newcommand{\trimbottom}{4cm} 
+
+% To use in the image width option in \includegraphics
+\newcommand{\imagewidth}{\linewidth}
 
 % This command creates a figure environment with a specific image:
 % \myfigure{page}{trim_width}{trim_height}{filename}
-%
-% Arguments:
-%  page: The page number of the image in the file.
-%  trim_width: The width of the trim box.
-%  trim_height: The height of the trim box.
-%  filename: The name of the file that contains the image.
-%
-% Usage:
-%  \myfigure{1}{1cm}{1cm}{image.png}
-% This will create a figure with the image from page 1 of image.png, trimmed to 1cm by 1cm.
 \newcommand{\myfigure}[4]{
   \begin{figure}[h]
     \centering
-    \includegraphics[page=#1, trim = #2 #3 #2 \trimtop, clip, width=\textwidth]{#4}
+    \includegraphics[page=#1, trim = #2 #3 #2 \trimtop, clip, width=\imagewidth]{#4}
   \end{figure}
 }
 
 % Sets the length of the vertical space between paragraphs to 8pt.
 \setlength{\parskip}{8pt}
 
-%% Document %%
+% To reduce padding around figure environment
+\setlength\intextsep{5pt}
 
-\title{Business Information Systems - Part 2}
+% Remove sections and subsection numbers
+\setcounter{secnumdepth}{0}
+
+\title{Business Information Systems - Part 2 \\ \large Professor Chiara Francalanci}
 \author{Gabriele Lazzarelli}
+\date{2023}
 
+%% Document %%
 \begin{document}
 
-% Debugging purposes
-\pagecolor{Goldenrod}
-
 \maketitle
+\vfill
+\noindent\makebox[\textwidth]{\includegraphics[width=10cm]{images/logo_polimi_scritta.eps}}
+
+
+\clearpage
 \tableofcontents
 
 % \include{sections/introduction}
-% \include{sections/workforce-management}
-% \include{sections/kpmg-erp-systems}
-% \include{sections/kpmg-low-code}
-% \include{sections/web-information-systems}
-% \include{sections/social-media-i}
+\include{sections/workforce-management}
+\include{sections/kpmg-erp-systems}
+\include{sections/kpmg-low-code}
+\include{sections/web-information-systems}
+\include{sections/social-media-i}
 \include{sections/social-media-ii}
-% \include{sections/social-media-iiI}
-
-
+\include{sections/social-media-iii}
+\include{sections/knowledge-management-i}
+\include{sections/knowledge-management-ii}
+\include{sections/big-data-i}
+\include{sections/big-data-ii}
+\include{sections/big-data-iii}
+\include{sections/big-data-iv}
+\include{sections/big-data-v}
+\include{sections/agile-i}
+\include{sections/agile-ii}
+\include{sections/agile-iii}
+\include{sections/agile-iv}
+\include{sections/agile-v}
 
 \end{document}
