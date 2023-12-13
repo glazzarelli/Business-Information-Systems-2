@@ -1,0 +1,711 @@
+\section{Agile - V Lecture}
+
+\subsection{Microservices Architecture}
+
+Alright, let's cover the final concepts before we wrap up the course.
+
+\subsubsection{Importance for Managers and Developers}
+
+In this section, we will discuss the importance of microservices
+architecture for both managers and developers. Even if you are a manager
+and not directly involved in development, understanding these concepts
+is crucial because you may be responsible for making decisions about the
+architecture based on factors such as budget and resources. We will also
+touch upon the relevance of DevOps and development pipelines, time
+permitting.
+
+\subsubsection{Microservices vs Monolith}
+
+Alternatively, you can rely on your technical team, who may recommend
+implementing a microservices architecture. However, if your business
+model is still evolving and your idea is not yet fully defined, a
+microservices architecture may not be the best choice. In this case, it
+might be more suitable to start with a quick and simple monolith
+architecture. Once your business becomes more stable, your requirements
+are well-defined, and your domain is established, you can transition
+from a monolith architecture to a microservices architecture.
+
+\subsubsection{Technical Debt and Team Dynamics}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=12, trim = 2.5cm 3.3cm 1cm 3.5cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+During our discussion on the weaknesses of the monolithic architecture,
+one crucial drawback stands out: the accumulation of technical debt. If
+you're unfamiliar with the term, technical debt refers to the
+consequences of having a complex application that becomes challenging to
+modify or adapt to market changes. Over time, even simple changes
+require significant effort. This issue typically arises after several
+years of development.
+
+However, it's worth noting that if you have a highly skilled and stable
+development team working on a monolithic architecture, technical debt
+can be minimized. But as your team grows and new members are added to
+meet the need for speed and increased budget, the risk of accumulating
+technical debt becomes more likely.
+
+\subsubsection{Microservices Basics}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=19, trim = 1.8cm 5cm 1.5cm 5cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+From a technical perspective, the answer to managing a larger and more
+complex application is to adopt a microservices architecture. The
+concept is straightforward: when faced with a large and
+difficult-to-manage application, the solution is to break it down into
+smaller, simpler units known as microservices.
+
+\subsubsection{Granularity and Practical Examples}
+
+While the term ``microservice'' may seem ambiguous at first, there are
+no strict rules defining its size. Some argue that a microservice should
+expose an API for a single entity or table, but I believe that level of
+granularity is excessive. In my current project, the largest
+microservice I have consists of around 12 tables.
+
+\subsubsection{Microservices Philosophy}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=20, trim = 1.8cm 2.8cm 1.5cm 3cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+While my project consists of around 400 to 500 tables, having only 12
+tables in relation to the entire domain model is relatively small. The
+philosophy behind microservices architecture is to focus on doing one
+thing and doing it well.
+
+\subsubsection{APIs and Inter-Service Communication}
+
+In the context of microservices architecture, each microservice can be
+viewed as an independent server-side application with its own database
+(if required) and an API. The API serves as the sole means of
+interacting with the business logic and data model within the
+microservice.
+
+\subsubsection{Data Duplication and Synchronization}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=21, trim = 1.8cm 3.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+There is another possibility that I will explain later, but it is
+crucial to avoid accessing or sharing databases between microservices.
+This is a common mistake that can lead to a complex and disadvantageous
+architecture. By coupling each microservice with a single data source,
+you end up with the drawbacks of both microservices and monolithic
+architectures. Instead, it is recommended to have different databases
+based on the specific domain and requirements of each microservice. For
+example, you can use a relational database or a NoSQL database, or even
+a search engine, depending on the needs of the microservice.
+Additionally, you have the flexibility to use different programming
+languages within the same application. This means that if you have a
+team where half is proficient in Java and the other half in Python, you
+can implement your application using both technologies. While this may
+not be the usual approach, it is feasible and can be beneficial for
+certain projects.
+
+Now, let's address the concept of data duplication in microservices,
+which contradicts what you may have learned in database courses. In some
+cases, duplicating data across microservices is necessary. For instance,
+consider two microservices: one for sales and another for customer
+support. Both microservices require access to the customer and product
+tables. In this scenario, it is recommended to have separate instances
+of these tables in each microservice.
+
+\subsubsection{Event-Driven Architecture}
+
+In a microservices architecture, it is common to have one microservice
+designated as the model for changing and modifying entities, while the
+other microservices only follow the master data and are not allowed to
+make changes. As a result, the microservices that do not modify the data
+typically only have the columns necessary for implementing their
+specific functionality. This means that the data is duplicated across
+multiple microservices.
+
+To ensure that the duplicated data remains synchronized, you can use
+various methods such as a message bus, a queue system, or a distributed
+transactional log. These mechanisms facilitate the communication and
+coordination between microservices, allowing them to exchange
+information and keep their data consistent.
+
+By designating one microservice as the master data source and making the
+others read-only, conflicts can be avoided. However, there may be cases
+where multiple microservices need to write to the same entity. In such
+situations, it is crucial to ensure that they write to different columns
+to minimize the risk of conflicts.
+
+Overall, synchronizing duplicated entities in a distributed data model
+requires careful consideration and the use of appropriate messaging and
+coordination mechanisms to maintain data consistency across
+microservices.
+
+\subsubsection{APIs for Internal and External Clients}
+
+Are you familiar with any open-source technologies? One example is
+Kafka. Another is RabbitMQ. These technologies are used in the context
+of microservices architecture, specifically for communication between
+microservices.
+
+Let's consider a scenario where we have two microservices: microservice
+one and microservice two. Microservice one has its own table, called
+table one, with an entity called T. When someone creates a new record
+for this entity through the API, it is stored in the database. After the
+record is created, we need to inform other microservices about this
+event, even if we don't know if they are interested. To achieve this, we
+use a message bus.
+
+We publish the creation event, indicating that a new record has been
+created. Microservice two, which also has its own version of the entity,
+subscribes to this event. Whenever the event is published on the bus,
+the bus notifies the subscribers, sending them the details of the newly
+created record. Microservice two can then update or insert the new
+record in its own model.
+
+This pattern of communication is known as publish and subscribe.
+Subscribers first subscribe to specific events, and then publishers
+publish those events. This is how microservices can interact with each
+other using events.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=22, trim = 1.8cm 4cm 1.5cm 3cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+Another way for microservices to communicate is through APIs. APIs are
+not only exposed to external clients, such as mobile or web
+applications, but can also be used for communication between
+microservices themselves.
+
+\subsubsection{Strengths of Microservices}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=24, trim = 1.8cm 4cm 1.5cm 3cm, clip, width=\imagewidth]{images/09 - Bruna_microservices.pdf}
+\end{figure}
+
+Microservices architecture offers several strengths compared to other
+paradigms. One of the key strengths is its reliability. In a
+microservices architecture, even if a service is temporarily
+unavailable, events are saved on a message bus and will eventually be
+delivered. This ensures that messages are not lost and the system
+remains robust.
+
+Another strength of microservices architecture is its flexibility and
+scalability. Unlike a monolithic architecture, where all modules write
+and read from the same database table, microservices allow for
+independent deployment and scaling of individual services. This means
+that each service can be developed, deployed, and scaled independently,
+providing greater flexibility and agility.
+
+Additionally, microservices architecture enables better fault isolation.
+Since each microservice is a separate entity, failures in one service do
+not impact the entire system. This allows for easier troubleshooting and
+maintenance, as issues can be isolated and resolved without affecting
+the entire application.
+
+From an architectural perspective, microservices architecture also
+promotes the use of APIs. APIs serve as the primary means of interacting
+with the business logic within each microservice. APIs can be
+implemented using REST, which is a simple and widely used protocol for
+sending and receiving JSON strings. This allows for easy integration
+with various client applications, such as mobile apps or web
+applications.
+
+In terms of application development, microservices architecture supports
+the implementation of different client applications, such as mobile apps
+or web applications. These applications can consume the same API
+provided by the microservice, eliminating the need for duplicating
+functionality. This promotes code reuse and reduces development effort.
+
+Overall, the strengths of microservices architecture lie in its
+reliability, flexibility, scalability, fault isolation, and support for
+API-driven development. These strengths make it a powerful and popular
+choice for building modern, distributed systems.
+
+\subsubsection{Autonomy and Evolution}
+
+In addition to exploring the strengths of microservices applications, it
+is important to acknowledge their weaknesses. While microservices offer
+significant advantages, there are also drawbacks that need to be
+considered. One of the key strengths of microservices is autonomy, where
+the business logic and data model are combined.
+
+\subsubsection{Scalability and Team Structure}
+
+One of the key factors contributing to their success is their approach
+to architecture. In the past, architectures like web services with
+components such as enterprise service bus and business process server
+failed because they separated the business logic from the data model.
+This resulted in the business logic being represented as XML, trying to
+orchestrate calls between different applications through a business
+process server, while the enterprise service bus attempted to facilitate
+communication between endpoints. However, this approach led to a
+distributed data model and a disconnect between the business logic and
+the data model.
+
+To ensure the success of microservices, it is crucial to keep the
+business logic as close as possible to the data model. The business
+logic and the API should be treated as atomic entities. The API serves
+as the contract through which functionality is exposed, while the
+implementation details are hidden. By exposing only minimal
+implementation details, you have the flexibility to make changes to the
+implementation without affecting the API. This encapsulation of
+implementation details allows for independent evolution of
+microservices.
+
+Another advantage of microservices is the ease of problem determination.
+In a monolithic architecture with millions of lines of code, it can be
+challenging to identify the source of a malfunction. However, with
+microservices, each microservice has its own log file, and there are
+tools available to collect and search through these log files. This
+makes troubleshooting and debugging much more manageable.
+
+Scalability is another strength of microservices. For example, during
+peak seasons like Christmas, when there is a high demand for a product,
+microservices can be deployed on the cloud to handle the increased
+workload. This scalability ensures that the system can handle the surge
+in traffic without compromising performance.
+
+\subsubsection{Cloud Readiness and Hybrid Solutions}
+
+Let's consider the example of the catalog microservice, the order
+microservice, and the user customer. The catalog microservice is the
+most impacted by user navigation on your website. Normally, you may have
+one or two instances of this microservice in the cloud throughout the
+year. However, during the Christmas period, you may need to scale up and
+have multiple instances of the catalog microservice. On the other hand,
+the order microservice is fine with just three instances. This selective
+scaling allows you to address the scalability issue by only scaling the
+specific functionality that requires it. In contrast, with a monolithic
+architecture, you would need to scale the entire monolith, resulting in
+higher costs for expensive virtual machines on platforms like Amazon Web
+Services.
+
+Another significant advantage of microservices is the ability to divide
+development efforts among multiple teams. In the project I am currently
+working on, we have a team of 40 people. It would be impossible for all
+40 people to work on the same monolithic application. Instead, we divide
+the team into four smaller teams, each consisting of 10 developers, two
+front-end developers, and one database specialist. The database
+specialist rotates among the teams, so each team does not have a
+dedicated specialist. Each team takes ownership of a specific
+microservice, treating it as an internal product. This distribution of
+people and their attachment to different microservices allows for
+scalability. However, it can also create challenges if the individuals
+assigned to a particular microservice are unavailable. To avoid
+dependency on specific developers, it is advisable to rotate team
+members and not assign exclusive ownership of a microservice.
+Nevertheless, in situations where speed is crucial within a short
+timeframe, temporary ownership can be a viable solution.
+
+For example, Spotify was developed by a collection of tribes, each
+consisting of nine people. The application is composed of different
+microservices, with each microservice managed by a different tribe. Each
+microservice is treated as a separate product internally. The catalog,
+suggestion engine, and billing engine are examples of components managed
+by different tribes and teams. This approach allowed Spotify to build
+its platform in a relatively short period.
+
+Another advantage of microservices is their readiness for cloud
+environments. In large companies, hybrid solutions are often used,
+combining resources from private clouds and internal servers.
+Microservices, with their use of networking protocols for communication,
+are well-suited for such hybrid cloud setups.
+
+\subsubsection{Drawbacks and Considerations}
+
+In a microservices architecture, it is common to have a combination of
+on-premise servers and cloud providers. This allows for flexibility and
+scalability, as you can scale specific microservices on the cloud during
+peak periods, such as Christmas, to ensure a smooth user experience.
+This level of scalability is not possible with a monolith running on
+on-premise servers. The advantages of this approach are evident, but
+it's important to consider potential drawbacks and points of attention,
+such as increased complexity.
+
+\subsubsection{Distributed Transactions and Saga Pattern}
+
+In a microservices architecture, it's important to consider the specific
+needs and complexity of your application. If you have a simple startup
+with a straightforward idea, it may be more beneficial to start with a
+simple monolith architecture rather than investing heavily in
+technology. This allows you to focus on developing functionalities
+without the added complexity of microservices.
+
+However, if you have a Formula One team and need to compete in the
+championship, a microservices architecture is necessary. It requires a
+skilled team to manage the dynamic nature of bounded contexts. It's
+common for the requirements and domain of a microservice to change
+during the project, resulting in the need to move entities between
+microservices. This can be a costly process as it requires deep code
+refactoring.
+
+One important consideration in microservices architecture is managing
+transactions. In a monolith, transactions are straightforward as they
+operate within a single database. You can start a transaction, perform
+multiple operations, and commit the changes to the database. If
+something goes wrong, you can roll back the transaction, ensuring that
+no changes are persisted.
+
+However, in microservices, managing transactions becomes more complex.
+If a transaction involves entities from multiple microservices, ensuring
+that all changes are either written or none are written becomes
+challenging. The distributed nature of microservices means that you
+can't rely on a single database to manage transactions across services.
+This requires careful design and implementation to ensure data
+consistency and reliability.
+
+To enable rollback functionality in a microservices architecture, the
+Saga Pattern can be utilized. This design pattern facilitates
+distributed transactions among microservices, ensuring that the database
+remains atomic, consistent, and durable. However, it is important to
+note that sagas cannot achieve isolation, which means that other
+microservices can observe the ongoing transaction while it is being
+orchestrated by an orchestrator using messaging.
+
+In contrast, isolated transactions only reveal the transaction's results
+to the rest of the world once it has been committed. By default,
+databases allow others to see the work being performed, but it is
+generally preferred to display the transaction's outcome only after it
+has been committed. With the saga pattern, this level of isolation is
+not possible. Instead, sagas operate on an ``everything or nothing''
+basis. If an error occurs during the execution of a transaction, the
+saga will initiate a rollback, triggering the rollback command in each
+microservice involved in the distributed transaction. This ensures that
+any work contributed by the microservices is deleted.
+
+In summary, it is important to understand the concepts of ``publish and
+subscribe,'' microservices, their strengths, and when to use them.
+Additionally, it is crucial to be aware of the challenges associated
+with distributed transactions.
+
+\subsection{DevOps and Development Pipelines}
+
+\subsubsection{Introduction to DevOps}
+
+DevOps is a crucial aspect of modern software development. It focuses on
+collaboration and communication between development teams and operations
+teams to ensure efficient and reliable software delivery. The goal of
+DevOps is to automate processes, improve deployment frequency, and
+enhance the overall quality of software.
+
+By adopting DevOps practices, organizations can achieve faster
+time-to-market, increased productivity, and improved customer
+satisfaction. DevOps emphasizes the use of automation tools, such as
+continuous integration and continuous deployment (CI/CD), to streamline
+the software development lifecycle.
+
+In traditional software development, there is often a disconnect between
+development and operations teams, leading to delays, errors, and
+inefficiencies. DevOps aims to bridge this gap by fostering a culture of
+collaboration and shared responsibility. Development teams work closely
+with operations teams to ensure that software is developed, tested, and
+deployed smoothly.
+
+One of the key principles of DevOps is the concept of ``infrastructure
+as code.'' This means that infrastructure, including servers, networks,
+and databases, is managed and provisioned through code, allowing for
+greater scalability, flexibility, and reproducibility.
+
+Another important aspect of DevOps is continuous monitoring and
+feedback. By monitoring the performance and usage of software in
+real-time, teams can identify and address issues promptly, ensuring a
+seamless user experience.
+
+In summary, DevOps is a transformative approach to software development
+that emphasizes collaboration, automation, and continuous improvement.
+By adopting DevOps practices, organizations can achieve faster, more
+reliable software delivery, and ultimately, better meet the needs of
+their customers.
+
+\subsubsection{Project Management and Agile Methodologies}
+
+Now, let's discuss the first
+direction, which focuses on project management and how to effectively
+organize a successful team. This is known as the project management
+axis.
+
+In the realm of DevOps and development pipelines, it is highly
+recommended to adopt agile methodologies. One popular option is Scrum,
+but there are other agile principles that can be followed as well. Agile
+methodologies are particularly relevant for certain career paths, such
+as the Scrum Master role. While technical knowledge is not a requirement
+for this role, having a solid understanding of technology can be
+beneficial. Additionally, there are other important roles within agile
+teams, including the product owner. If you have a clear vision of how
+the product should be defined, you can take on the role of the product
+owner. The second aspect to consider is the technology axis.
+
+\subsubsection{DevOps Principles and Practices}
+
+In the realm of architectural paradigms, one option to consider is the
+microservice architecture. This approach is particularly suitable if you
+prioritize agility and speed. However, it's important to note that the
+monolith architecture can also be a viable choice. Regardless of the
+architecture you choose, implementing DevOps practices is crucial.
+
+Now, let's delve into what DevOps actually means. It's a term that
+combines development and operations, and it has gained significant buzz
+in recent years.
+
+\subsubsection{Cultural Shift and Tooling}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=4, trim = 1.8cm 3.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+In the past, development and operations teams worked separately, with
+different priorities and objectives. The development team focused on
+innovation, speed, and flexibility, while the operations team
+prioritized reliability, security, and problem management. This created
+a divide between the two teams, both organizationally and in terms of
+their goals.
+
+The development team worked efficiently, following agile practices and
+producing software at a fast pace. However, when it came to deploying
+the software in a production environment, they had to rely on the
+traditional operations team. This process involved opening a ticket and
+waiting for the operations team to handle it, which often took a long
+time. This delay meant that the software was not being utilized and
+valuable feedback was not being received.
+
+The operations team had their own challenges, such as dealing with
+emergencies and interruptions. They also had a different way of working,
+requiring issues to be raised through an issue tracker. This created a
+barrier between the development and operations teams, causing delays and
+miscommunication.
+
+To address these issues, the concept of DevOps emerged. DevOps aimed to
+break down the wall between development and operations by implementing
+new methodologies and tools. While it took 20 years for agile practices
+to become widely adopted, DevOps gained traction more quickly due to its
+focus on cultural change and the use of tools to facilitate the
+transition.
+
+By embracing DevOps, organizations could bridge the gap between
+development and operations, enabling faster and more efficient software
+deployment. This cultural shift and tooling allowed for better
+collaboration, improved communication, and the ability to deliver
+software that met customer needs in a timely manner.
+
+\subsubsection{DevOps Lifecycle and Automation}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=7, trim = 1.8cm 3.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+The concept of DevOps is a combination of patterns aimed at enhancing
+collaboration between development and operations. It involves viewing
+the entire software lifecycle management as a unified process, rather
+than separate development and operations processes. Another variation of
+DevOps is DevSecOps, which emphasizes the importance of integrating
+security into the process.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=8, trim = 1.8cm 6cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+The goals of DevOps are to increase speed, improve reliability, and
+reduce costs. There are three key ways to implement DevOps. The first is
+to adopt a systems thinking approach, recognizing that the goal is not
+just to develop an application, but to ensure its successful use by
+clients or customers. The second way is to continuously improve the
+process by seeking feedback and monitoring performance. This allows for
+experimentation and the exploration of new ways to achieve better
+results.
+
+The symbol of DevOps is often represented by an infinity symbol, which
+signifies the different phases of the software lifecycle process.
+
+\subsubsection{Roles and Continuous Improvement}
+
+In the DevOps cycle, you start by collecting requirements and planning
+your iteration. Then you move on to coding and building the software.
+During this process, there are various steps, including unit testing,
+manual testing, and automatic user acceptance testing. Once the software
+is ready, it is released and stored in an archive with a version number.
+From there, it is deployed by other software. Customers and users then
+start using the software, and it is important to monitor it for any
+issues or resource constraints. The next step is to plan and code the
+next set of important features.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=11, trim = 1.8cm 3.7cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+To implement DevOps, you can utilize a range of tools and technologies.
+For coding, you can use a code repository like Git, and development
+environments such as Eclipse, Visual Studio Code, or IntelliJ. To build
+the software, automation tools like Maven, Apache Ant, or Jenkins can be
+used. Testing can be automated using tools like JUnit. The orange and
+yellow sections represent the operations and development aspects,
+respectively. In the past, these were handled by separate teams, but now
+they are part of the same process. Operations teams can set up and
+implement toolchains to provide developers with self-service options for
+releasing and deploying software.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=12, trim = 1.8cm 5.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=13, trim = 1.8cm 2.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+The main goal of DevOps is to automate as much manual work as possible
+in bringing software from a code repository to a production environment.
+The ability to push a single button and deploy a complex solution
+composed of multiple microservices is a significant achievement.
+Automation makes the process repeatable and allows for frequent
+production deployments. By optimizing the overall flow of the process,
+DevOps enables the management of complex distributed architectures. The
+focus is on optimizing the entire process rather than micro-optimizing
+individual areas like tests or code. In the DevOps approach, different
+roles are required to participate in the process, but now these roles
+should be part of a single team rather than separate teams.
+
+\subsubsection{Final Thoughts and Summary}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=14, trim = 1.8cm 3.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+Another important principle in DevOps is to address problems in the
+process as soon as they arise, rather than allowing them to progress to
+the next step. For example, if you are implementing a feature and you're
+unsure about a particular algorithm, it's better to solve the problem at
+that stage rather than relying on the unit test team to catch it later.
+By resolving issues at each step, you ensure that the subsequent steps
+receive good inputs and can produce the desired outputs.
+
+While there are other roles that can be part of DevOps, they are not the
+focus here. The key is to promote continuous improvement. If you
+currently release to production once a month, consider aiming for a
+weekly release. In some projects, we even achieved daily production
+releases. This approach is more relaxing because if a mistake is made,
+it can be fixed the next day. It also allows for quicker response to
+customer feedback on new functionalities, rather than waiting for months
+to make corrections.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[page=16, trim = 1.8cm 5.5cm 1.5cm 3cm, clip, width=\imagewidth]{images/10 - Bruna_devops.pdf}
+\end{figure}
+
+By increasing the frequency of releases and gaining experience in
+managing the entire software lifecycle, you become more efficient. This
+repetition and learning process is valuable. In summary, these
+principles of addressing problems early, promoting continuous
+improvement, and increasing release frequency contribute to a more
+efficient and effective DevOps approach. If you have any questions about
+these concepts, please feel free to ask.
+
+\subsection{Career Advice and Industry Insights}
+
+\subsubsection{Software Quality and Enterprise Architecture}
+
+Agile methodologies are the future of project management. This is a
+crucial message. In the past, there was a misconception that software
+implementation could be outsourced to any team around the world because
+it was considered a simple commodity, like buying oil or electricity.
+However, big companies have come to realize that this approach was a
+mistake. By outsourcing software development, they lost control over
+their own technology and decision-making. The person working directly
+with the technology, who understands the problem and the domain, should
+be the one making important decisions. Smart companies have started to
+bring knowledge back in-house by hiring enterprise architects and
+building internal developer teams. They may still work with external
+software providers and system integrators, but they also ensure that
+their own developers are involved in every project to learn and transfer
+knowledge. The quality of software is paramount because high-quality
+software allows for faster implementation of new functionalities at a
+lower cost. On the other hand, quick and dirty solutions lead to
+technical debt and eventually hit a wall of sustainability. When this
+happens, it becomes more expensive to re-implement everything rather
+than making changes to existing software. Therefore, software quality is
+crucial, and it is important to have a clear understanding of the design
+patterns used at all levels, from individual components to the entire
+enterprise architecture.
+
+\subsubsection{Choosing the Right Project and Company Size}
+
+I have worked for companies that faced significant challenges due to
+poor data architecture and lack of enterprise-level planning. One
+particular company had 800 applications, each with its own database, and
+a complex network of scripts exchanging data between them. This resulted
+in spikes of CPU usage and a loss of control over the architecture. When
+they needed to add new functionality, they kept adding layers of
+complexity without considering the bigger picture. Eventually, they had
+to halt their business operations for several days, resulting in
+significant financial losses.
+
+This experience taught me three important lessons. First, the
+architecture and software design are crucial. Without proper planning
+and oversight, a company can quickly lose control of its systems.
+Second, it's important to avoid being a ``monkey developer'' who relies
+on manual, repetitive steps for tasks like deployment. Taking the time
+to automate these processes can save time and effort in the long run.
+Lastly, when choosing a project or company to work for, it's important
+to consider the size and complexity of the organization. While big
+companies offer stability and resources, smaller companies may provide
+more opportunities for growth and a closer-knit team environment.
+
+I've seen colleagues and young entrepreneurs who either overcomplicated
+their architectures or created overly simplistic solutions. Both
+approaches can lead to technical debt and hinder future development.
+It's important to strike a balance and be adaptable to changing needs.
+While there is no set formula for when to switch to a microservice
+architecture, it's crucial to recognize when the current system is
+becoming too complex to handle future requirements.
+
+In some cases, a temporary shift to a command-and-control management
+style can be effective for achieving short-term goals. However, this
+approach is not sustainable in the long run and may lead to team members
+leaving. It's important to create an environment that fosters
+collaboration and allows individuals to work in a way that suits their
+preferences.
+
+In today's competitive job market, good developers are highly sought
+after. Recruiters constantly reach out with enticing opportunities,
+making it challenging to choose the right path. While working for a big
+company may offer stability and benefits, some individuals prefer a
+smaller, more intimate work environment where they feel valued and part
+of a close-knit team. Ultimately, it's important to weigh the pros and
+cons and choose a path that aligns with your goals and values. Starting
+with a smaller company can provide valuable experiences and exposure to
+a wider range of tasks and responsibilities.
+
+When starting your career in a large company, it's common to be assigned
+to a specific role within a narrow sector. As a junior developer, you
+may find yourself working on the same task for many years. This is
+because larger companies tend to have more specialized roles and may not
+immediately place you in a higher-level position like an architect. If
+you want to gain exposure to different aspects of a project, it may be
+beneficial to start your career in a smaller company. Once you have
+gained more experience, you can then transition to a larger company.
+
+For example, in my own experience, I worked for a company with 150
+employees.
+
+In 2000, the company was founded, and I joined in 2003. I am still
+working there to this day. In January of last year, we made a strategic
+decision to focus on software quality in order to compete in the market.
+Our approach was to offer higher quality software, even if it meant
+being more expensive. As a result of our success, we were acquired by a
+German company called Adesso. They recognized the value of our
+quality-focused mindset and are now using us as their first Italian
+company to enter the Italian market. I hope this explanation has been
+helpful in understanding our journey.
