@@ -2,7 +2,7 @@
 
 This repository contains the LaTeX source code for my notes of Business Information Systems 2 held at Politecnico di Milano.
 
-**Disclaimer:** The text from the notes are generated using GPT and Whisper-v2 from the audios of the lectures≈. While every effort has been made to ensure accuracy, there may be errors and inaccuracies. 
+**Disclaimer:** The text from the notes are generated using GPT and Whisper-v2 from the audios of the lectures. While every effort has been made to ensure accuracy, there may be errors and inaccuracies. 
 
 ## Structure
 
