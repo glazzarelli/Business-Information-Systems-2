@@ -1,12 +1,14 @@
 # Business Information Systems 2 Notes
 
-This repository contains the LaTeX source code for my notes of Business Information Systems 2 held at Politecnico di Milano.
+This repository contains the LaTeX source code for my notes of Business Information Systems 2 held at Politecnico di Milano for the year 2022-2023.
 
-**Disclaimer:** The text from the notes are generated using GPT and Whisper-v2 from the audios of the lectures. While every effort has been made to ensure accuracy, there may be errors and inaccuracies. 
+**Disclaimer:** The text from the notes are generated using a pipeline mainly consisting of Whisper-v2 for generating the trascripts from the audios of the lectures, GPT4 for the sectioning of such transcripts, and GPT3.5 for the rephrasing. While every effort has been made to ensure accuracy, there may be errors and inaccuracies.
 
 ## Structure
 
 The main LaTeX file is `main.tex`. This file includes sections from external files located in the `sections` directory.
+
+The `image` directory contains the slides of the course.
 
 The `output` directory contains the compiled PDF document.
 
